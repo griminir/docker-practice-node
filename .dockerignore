@@ -1,2 +1,3 @@
 # this is the ignore file for docker
 node_modules/
+package-lock.json
