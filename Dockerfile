@@ -14,12 +14,15 @@ WORKDIR /app
 # this copies all files (.) from the current directory to the working directory (/app)
 # if we need to copy a file that has a space in the name we can use the following syntax
 # COPY ["hello world.txt", "."]
-COPY . . 
+COPY package*.json .
 
 # ADD lets us add files from a URL and it can also extract zip files (aka COPY with extra features)
 
 # RUN lets you run commands in the container
 RUN npm install
+
+# this combined with the COPY command above is a bit of optimization because it will only copy the files that have changed
+COPY . .
 
 # adds an environment variable to the container
 ENV API_URL=http://api.myapp.com
