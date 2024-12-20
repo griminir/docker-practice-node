@@ -1,0 +1,145 @@
+ls - list files
+    augments: -1: one per line
+              -l: detailed info
+              -a: see all files
+
+cd - directory change
+    augments: (req*) filepath
+              ~: home directory
+              ..: moves up 1 directory
+
+grep: search
+    augments: (req*) what you are looking for
+              (req*) what file you are looking in
+              -i: case insensetive
+              -r: resurcive search lets us go through directories
+
+pwd: prints the directory you are in
+
+mkdir: makes a directory
+    augments: (req*) new dir name
+
+mv: lets you rename or move them somewhere else
+    augments: (req*) file you wish do to something to
+              (req*) new name of the file or a path and new name of the file
+
+touch: creates a new file
+    augments: (req*) needs a name for the file (can create multiple files seperated with a space)
+
+rm: removes files or directories
+    augments: (req*) file name
+              -r: deletes everything inside the folder and the folder
+
+cat: write to a file or readfile
+    augments: (req*) file name
+              (opt*) multiple files
+              >: redirects content from one file to another file (can be used to copy a file)
+                (req*) new filename
+
+apt update: updates list of applications
+
+apt install: installs application
+    augments: (req*) app name
+
+less: improved way of looking at larger text files (needs to be installed with apt). suppose to replace more command.
+    augments: (req*) file name
+
+head: displays the first line
+    augments: (req*) file name
+              -n: amount of lines (req*) a number of lines
+
+tail: looks at the last line
+    augments: (req*) file name
+              -n: amount of lines (req*) a number of lines
+
+echo: used to display input in terminal
+    augments: (opt*) what you wanna display
+              >: can be used to write a line to a file
+                (req*) file name
+
+find: shows all files recursivly (hidden files also)
+    augments: (opt*) file path
+              -type: lets you specify what you are looking for
+                f: files
+                d: directories
+                -name: name of the file
+                 (req*) "F*" = all files that start with f
+                -iname: for case insensetive
+                 (req*) "F*" = all files that start with f
+
+; used for chaining operations
+    arguments: (opt*) if followed directly by a backslash allows for multiple lines of commands
+
+&& used for chaining operations if successful
+
+|| used for do x or y (if x files do y)
+
+| used for piping sends what you need into something else
+    example: ls /bin | less (here the less command does not need a file name since it gets it from ls /bin)
+
+>> appends left to right
+
+printenv: prints all enviorment variables on the machine
+    augments: (opt*) env variable (ex PATH) case sensetive
+
+export: sets a env variable for the session
+    arguments: (req*) name and value (ex DB_USER=TIMMY)
+
+source: executes file in current shell
+    augments: (req*) file name (ex source .bashrc // must be executed from home)
+
+ps: shows all running proccess
+
+sleep: sleeps a process
+    augments: (req*) amount of time in sec
+              &: lets it run in the background
+
+kill: stops the proccess
+    augments: (req*) PID that you get from ps command
+
+useradd: makes a user
+    augments: (req*) name of user
+              -m: creates the users home directory
+adduser: more interactive way of adding a user
+
+usermod: modifies a user
+    augments: (req*) name of user
+              -s: sets the shell for the user
+                (req*) what shell you wanna use (ex bin/bash)
+              -g: set primary group for user
+                (req*) group name
+                (req*) user name
+              -G: set supplementery group for user
+                (req*) group name
+                    -a: appends group to user without removing the user from other groups
+                (req*) user name
+                
+
+userdel: deletes user
+    arguments: (req*) user name
+
+/etc/shadow: has the passwords for all users only root user has access
+/etc/passwd: has all the users
+
+groupadd: adds a groupe (groups are way of sharing access)
+    arguments: (req*) group name
+
+groupmod: modifies groups
+
+groupdel: deletes groups
+
+groups: can help look for users groups
+    arguments: (req*) user name
+
+chmod: change permission
+    arguments: u: user
+                r: read
+                w: write
+                x: execute 
+                -: remove (ex u-x)
+                +: add (ex u+w)
+                (req*) name of file or dir
+               g: group
+                same as user
+               o: others
+                same as user
