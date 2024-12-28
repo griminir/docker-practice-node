@@ -11,12 +11,15 @@ USER app
 # this sets the working directory all instructions that follow will be executed in this directory
 WORKDIR /app
 
+RUN mkdir data
+
 # this copies all files (.) from the current directory to the working directory (/app)
 # if we need to copy a file that has a space in the name we can use the following syntax
 # COPY ["hello world.txt", "."]
-COPY package*.json .
+COPY package.json .
 
 # ADD lets us add files from a URL and it can also extract zip files (aka COPY with extra features)
+
 
 # RUN lets you run commands in the container
 RUN npm install
@@ -28,7 +31,7 @@ COPY . .
 ENV API_URL=http://api.myapp.com
 
 # this is the port that the container will listen on
-EXPOSE 3000
+EXPOSE 5173
 # check vite.config.js for how to set the port with vite
 
 # this is the command that will run when the container starts
@@ -37,8 +40,6 @@ CMD [ "npm", "run", "dev" ]
 
 # ENTRYPOINT is similar to CMD but it is not overriden by the command that is passed to the container
 # ENTRYPOINT [ "npm", "run", "dev" ]
-
-
 
 # to build the image we run the following command
 # docker build -t myapp . (build makes the image, -t tags the image with the name myapp and the . is the current directory)
